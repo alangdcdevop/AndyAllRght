@@ -10,8 +10,10 @@ public class Main {
 
 
     Map<Integer, Integer> outerArr = new HashMap<Integer, Integer>();
-    Integer counter =0 ;
+    Integer counter ;
     int index ;
+
+
     @Test
     public  void main(){
 
@@ -25,34 +27,27 @@ public class Main {
 
         searchForEquals(array1,array2);
 
-        System.out.println("Valores:\n");
-
-
-
-        System.out.println("Map :"+outerArr);
-        outerArr.forEach((n)-> printValues(n)  );
-
+        printValues();
 
 
     }
 
-    private void printValues(Integer n) {
-//        System.out.println("Valor : "+n[0]+ ", contador : "+ n[1]);
-
-        // arr1 {1,2,3} arr2 {5,2,4,3,2}
-        // Print =
-        // 1 No
-        // 2 Yes, count 3
-        // 3 Yes, count 2
-        // 4 No
+    private void printValues() {
+        for (Object objectName : outerArr.keySet()) {
+            if (outerArr.get(objectName)==0) {
+                System.out.println(objectName + " NO ");
+            } else {
+                int cant =outerArr.get(objectName);
+                cant++;
+                System.out.println(objectName + " Yes,  count " + cant);
+            }
+        }
 
     }
 
     private void searchForEquals(ArrayList<Integer> array1, ArrayList<Integer> array2) {
-
         index = 0;
         array1.forEach((valueFromArray1)-> compareValueToArray(valueFromArray1,array2));
-
     }
 
     private void compareValueToArray(Integer valueFromArray1, ArrayList<Integer> array2) {
@@ -68,19 +63,18 @@ public class Main {
     }
 
     private void addToArrayWithEqualValues(Integer valueFromArray1, Integer valueFromArray2) {
-       counter++;
+        counter++;
         outerArr.put(valueFromArray1,counter);
+
+
 
     }
 
     private void loadDataToArray(ArrayList<Integer> array) {
-
         for (int i =0 ; i<6; i++) {
             int random = ThreadLocalRandom.current().nextInt(1 , 6 );
             array.add(random);
-
         }
-
     }
 
 }
